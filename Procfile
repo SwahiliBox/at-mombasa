@@ -1,2 +1,2 @@
 
-web: gunicorn at-mombasa:app
+web: gunicorn app:app
