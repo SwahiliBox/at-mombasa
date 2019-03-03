@@ -1,27 +1,51 @@
-from flask import Flask,render_template
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
-	return render_template('index.html')
+    return render_template('index.html')
+
+
 @app.route('/sms')
-def mysms():
-	return render_template('sms.html')
-	
-@app.route('/home')
-def home():
-	return '<h1>Hello Bamburi!!!</h1>'
+def sms():
+    return render_template('sms.html')
+
+
+@app.route('/voice')
+def voice():
+    return render_template('voice.html')
+
+
+@app.route('/payment')
+def payment():
+    return render_template('payment.html')
+
+
+@app.route('/airtime')
+def airtime():
+    return render_template('airtime.html')
+
 
 @app.route('/town/<name>')
 def town(name):
-	return f"<h1>I am in {name}</>"
+    return '<h1>I am in {}</h1>'.format(name)
 
-@app.route('/names/<name>')
-def names(name):
-	if name.endswith('y'):
-		return name[:-1] + "ifull"
-	else:
-		return name + "y"
-if __name__ == "__main__":
-	app.run(port=5000)
+
+@app.route('/latin/<latin_name>')
+def latin(latin_name):
+
+    latiname = ''
+
+    if latin_name[-1] == 'y':
+        latiname = latin_name[:-1] + 'iful'
+
+    else:
+        latiname = latin_name + 'y'
+
+    return f'<h1>My latin name is {latiname}</h1>'
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
